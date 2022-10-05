@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import statsmodels.api as sm
 import plotly.express as px
 def load_data():
     prices = pd.read_csv(r'dataframes/commodity_futures.csv')
@@ -43,29 +44,9 @@ fCPI.drop(columns='percent', inplace=True)
 fCPI.index=fCPI.date
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# prices_chart=px.line(data_frame=prices,labels={'value':"Values",'date':''},title='Price changes of the whole Dataframe(unnormalized)')
-# prices_chart.add_vrect(x0=pd.to_datetime('1/31/2020'), x1=pd.to_datetime('2/24/2022'),line_width=0, fillcolor="red", opacity=0.2, annotation_text="WHO Issues Global Health Emergency", annotation_position="top left",annotation=dict(font_size=10))
-# prices_chart.add_vrect(x0=pd.to_datetime('2/24/2022'), x1=pd.to_datetime(prices.index.max()),line_width=0, fillcolor="blue", opacity=0.2, annotation_text="Russia Invades Ukraine", annotation_position="top left",annotation=dict(font_size=10))
-# prices_chart.update_xaxes(range=[pd.to_datetime('1/1/2014'), pd.to_datetime(prices.index.max())])
-# prices_chart.update_layout(hovermode="x unified", legend_title="Commodity Name")
-# prices_chart.update_layout(
-#     xaxis=dict(
-#         rangeselector=dict(
-#             buttons=list([
-#                 dict(step="all",
-#                     label="View all Data"),
-#             ])
-#         ),
-#         rangeslider=dict(
-#             visible=True
-#         ),
-#         type="date"
-#     )
-# )
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-prices_simple_chart=px.line(data_frame=prices_simple,labels={'value':"Values",'date':''},title='Price changes of the simplified Dataframe (unnormalized)')
+prices_simple_chart=px.line(data_frame=prices_simple,labels={'value':"Values",'date':''},title='Dataframe')
 prices_simple_chart.add_vrect(x0=pd.to_datetime('1/31/2020'), x1=pd.to_datetime('2/24/2022'),line_width=0, fillcolor="red", opacity=0.2, annotation_text="WHO Issues Global Health Emergency", annotation_position="top left",annotation=dict(font_size=10))
-prices_simple_chart.add_vrect(x0=pd.to_datetime('2/24/2022'), x1=pd.to_datetime(prices_simple.index.max()),line_width=0, fillcolor="blue", opacity=0.2, annotation_text="Russia Invades Ukraine", annotation_position="top left",annotation=dict(font_size=10))
+prices_simple_chart.add_vrect(x0=pd.to_datetime('2/24/2022'), x1=pd.to_datetime(prices_simple.index.max()),line_width=0, fillcolor="blue", opacity=0.2, annotation_text="Russia Invades<br>Ukraine", annotation_position="top left",annotation=dict(font_size=10))
 prices_simple_chart.update_xaxes(range=[pd.to_datetime('1/1/2014'), pd.to_datetime(prices_simple.index.max())])
 prices_simple_chart.update_traces(mode="lines", hovertemplate=None)
 prices_simple_chart.update_layout(hovermode="x unified", legend_title="Commodity Name")
@@ -84,9 +65,9 @@ prices_simple_chart.update_layout(
     )
 )
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-prices_simple_norm_chart=px.line(data_frame=prices_simple_norm,labels={'value':"Values",'date':''},title='Price changes of the simplified Dataframe (normalized)' )
+prices_simple_norm_chart=px.line(data_frame=prices_simple_norm,labels={'value':"Values",'date':''},title='Dataframe (normalized)' )
 prices_simple_norm_chart.add_vrect(x0=pd.to_datetime('1/31/2020'), x1=pd.to_datetime('2/24/2022'),line_width=0, fillcolor="red", opacity=0.2, annotation_text="WHO Issues Global Health Emergency", annotation_position="top left",annotation=dict(font_size=10))
-prices_simple_norm_chart.add_vrect(x0=pd.to_datetime('2/24/2022'), x1=pd.to_datetime(prices_simple.index.max()),line_width=0, fillcolor="blue", opacity=0.2, annotation_text="Russia Invades Ukraine", annotation_position="top left",annotation=dict(font_size=10))
+prices_simple_norm_chart.add_vrect(x0=pd.to_datetime('2/24/2022'), x1=pd.to_datetime(prices_simple.index.max()),line_width=0, fillcolor="blue", opacity=0.2, annotation_text="Russia Invades<br>Ukraine", annotation_position="top left",annotation=dict(font_size=10))
 prices_simple_norm_chart.update_xaxes(range=[pd.to_datetime('1/1/2014'), pd.to_datetime(prices_simple.index.max())])
 prices_simple_norm_chart.update_traces(mode="lines", hovertemplate=None)
 prices_simple_norm_chart.update_layout(hovermode="x unified", legend_title="Commodity Name")
@@ -286,14 +267,14 @@ x_dep=prices_simple.wheat
 # dependent variable
 y=prices_simple.copper
 equation=(0.0028*x_dep)+1.4694
-regression_chart=px.scatter(y=y,x=x_dep,trendline='ols', trendline_color_override="red",labels={'y':"Price of Copper",'x':"Price of Wheat"},title='Relationship between copper and wheat')
+regression_chart=px.scatter(y=y,x=x_dep,trendline='ols', trendline_color_override="red",labels={'y':"Price of Copper",'x':"Price of Wheat"},title='Machine Learning Regression Plot (Copper & Wheat)')
 regression_chart.update_layout(
-    title='Relationship between copper and wheat',
     dragmode='select',
-    width=900,
-    height=900,
+    width=600,
+    height=600,
 )
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
 rgdp_chart=px.line(data_frame=rGDP.gdp ,labels={'value':"Monthly US Real GDP",'quarter':''},title='' )
 rgdp_chart.add_vrect(x0=pd.to_datetime('1/31/2020'), x1=pd.to_datetime('2/24/2022'),line_width=0, fillcolor="red", opacity=0.2, 
                 annotation_text="WHO Issues Global<br>Health Emergency",annotation_position="top left",annotation=dict(font_size=12))
