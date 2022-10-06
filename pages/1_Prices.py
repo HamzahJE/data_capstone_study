@@ -1,11 +1,11 @@
 import streamlit as st
 import streamlit.components.v1 as components
-from plotly_charts import prices_simple_chart,prices_simple_norm_chart,copper_price_chart,wheat_price_chart,gasoline_price_chart,pairplot_chart,corr_chart,regression_chart
+from functions import prices_simple_chart,prices_simple_norm_chart,copper_price_chart,wheat_price_chart,gasoline_price_chart,pairplot_chart,corr_chart,regression_chart,predictions
 st. set_page_config(layout="wide",
     page_title='Effect on Prices',
     page_icon='💰'
 )
-st.sidebar.success('⬆️ Select a page above ⬆️')
+st.sidebar.success('👆 Select a page above 👆')
 
 st.title('Effect on Prices')
 
@@ -25,8 +25,8 @@ st.plotly_chart(wheat_price_chart, use_container_width=True)
 # st.subheader('Price of Gasoline')
 st.plotly_chart(gasoline_price_chart, use_container_width=True)
 
-
 st.title('Machine Learning')
+st.write('I used the price of gasoline and the price wheat to predict the price of copper (using statsmodels and sklearn)')
 col1,col2,col3 = st.columns((1,1,1))
 with col1:
     st.plotly_chart(pairplot_chart )
@@ -35,16 +35,17 @@ with col2:
 with col3:
     st.plotly_chart(regression_chart)
 
+if st.checkbox('View chart of input values and predictions'):
+    st.write(predictions, use_container_width=True)
 st.sidebar.header('What Effect did *COVID-19* and the *Ukraine Conflict* have on prices of goods?')
 
 with st.sidebar:
     st.markdown('___')
-    st.markdown("Developed by `Hamzah`  ⇨  [GitHub](https://github.com/HamzahJE), [Linkedin](https://www.linkedin.com/in/HamzahJE/).")
+    st.markdown("Developed by `Hamzah`  ⇨  [GitHub Repo](https://github.com/HamzahJE/data_capstone_study).")
     st.markdown('___')
 
 hide_st_style = """
             <style>
-            #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             </style>
             """

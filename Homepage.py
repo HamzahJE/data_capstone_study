@@ -1,10 +1,20 @@
 import streamlit as st
 import streamlit.components.v1 as components
-from plotly_charts import embeded_linkedin
+from functions import embeded_linkedin
 st. set_page_config(layout="wide",
     page_title='Purpose',
     page_icon='👋'
 )
+
+st.title('About Me:')
+
+col1,col2,col3 = st.columns((1,1,1))
+with col1:
+    st.markdown('#### Hey, My name is `Hamzah`!')
+    st.markdown('#### I am a developer and data analyst based in the Detroit metropolitan area.')
+with col3:
+    components.html(embeded_linkedin['linkedin'],height=270)
+
 
 st.write('# Purpose')
 red_covid='<span style="color:red">COVID-19</span>'
@@ -27,25 +37,14 @@ with col2:
     st.write('### - [Matplotlib](https://matplotlib.org/) | [Seaborn](https://seaborn.pydata.org/) | [Altair](https://altair-viz.github.io/) | [Plotly](https://plotly.com/python/)')
 
 
-st.title('About Me:')
-components.html(embeded_linkedin['linkedin'],height=310)
-
-
-
-
-
-
-
-
-st.sidebar.success('⬆️ Select a page above ⬆️')
+st.sidebar.success('👆 Select a page above 👆')
 with st.sidebar:
     st.markdown('___')
-    st.markdown("Developed by `Hamzah`  ⇨  [GitHub](https://github.com/HamzahJE), [Linkedin](https://www.linkedin.com/in/HamzahJE/).")
+    st.markdown("Developed by `Hamzah`  ⇨  [GitHub Repo](https://github.com/HamzahJE/data_capstone_study).")
     st.markdown('___')
 
 hide_st_style = """
             <style>
-            #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             </style>
             """
