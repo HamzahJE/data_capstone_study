@@ -13,7 +13,7 @@ with col1:
     st.markdown('#### Hey, My name is `Hamzah`!')
     st.markdown('#### I am a developer and data analyst based in the Detroit metropolitan area.')
 with col3:
-    components.html(embeded_linkedin['linkedin'],height=270)
+    components.html(embeded_linkedin['linkedin'],height=300)
 
 
 st.write('# Purpose')
