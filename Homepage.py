@@ -41,7 +41,7 @@ st.sidebar.success('👆 Select a page above 👆')
 with st.sidebar:
     st.markdown('___')
     st.markdown("Developed by `Hamzah`  ⇨  [GitHub Repo](https://github.com/HamzahJE/data_capstone_study).")
-    st.markdown("Check Out My` [Portfolio](https://hamzahje.github.io/). ")
+    st.markdown("Check Out My [Portfolio](https://hamzahje.github.io/). ")
 
     st.markdown('___')
 
