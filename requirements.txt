@@ -1,4 +1,4 @@
-pip==22.0.4
+pip==23.2.1
 altair==4.2.0
 matplotlib==3.4.3
 matplotlib-inline==0.1.2
